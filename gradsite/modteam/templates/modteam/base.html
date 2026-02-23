@@ -15,11 +15,11 @@
             --surface:  #161923;
             --card:     #1c2030;
             --border:   #252b3b;
-            --accent:   #e8a020;
-            --accent2:  #c47010;
+            --accent:   #26CDFF;
+            --accent2:  #0283aa;
             --text:     #e0e4f0;
             --muted:    #7880a0;
-            --danger:   #e05050;
+            --danger:   #ca0000;
             --radius:   10px;
         }
 
@@ -35,7 +35,7 @@
         }
 
         a { color: var(--accent); text-decoration: none; }
-        a:hover { color: #ffbb44; }
+        a:hover { color: #69dcff; }
 
         /* ---------- NAVBAR ---------- */
         .navbar {
@@ -82,7 +82,7 @@
         .hero::before {
             content: '';
             position: absolute; inset: 0;
-            background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232,160,32,.08) 0%, transparent 70%);
+            background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(38,205,255,.07) 0%, transparent 70%);
         }
         .hero-content { position: relative; max-width: 700px; margin: 0 auto; }
         .hero h1 {
@@ -138,7 +138,7 @@
         .news-card:hover {
             transform: translateY(-4px);
             border-color: var(--accent2);
-            box-shadow: 0 8px 30px rgba(232,160,32,.12);
+            box-shadow: 0 8px 30px rgba(38,205,255,.12);
         }
 
         .news-card__cover {
@@ -175,7 +175,7 @@
             border: none; cursor: pointer;
             transition: background .2s, transform .15s;
         }
-        .btn:hover { background: #ffbb44; color: #000; transform: translateY(-1px); }
+        .btn:hover { background: #69dcff; color: #000; transform: translateY(-1px); }
         .btn-outline {
             background: transparent;
             border: 1px solid var(--accent);
@@ -240,7 +240,7 @@
             display: inline-block; margin-top: .35rem;
             font-size: .72rem; font-weight: 700;
             letter-spacing: 1px; text-transform: uppercase;
-            background: rgba(232,160,32,.15); color: var(--accent);
+            background: rgba(38,205,255,.15); color: var(--accent);
             padding: .2rem .6rem; border-radius: 4px;
         }
         .team-card__bio { margin-top: .75rem; color: var(--muted); font-size: .83rem; }
@@ -278,7 +278,7 @@
             margin: 2rem 0 .8rem; font-weight: 700;
         }
         .post-content img { max-width: 100%; border-radius: var(--radius); margin: 1rem 0; }
-        .post-content a { color: var(--accent); border-bottom: 1px solid rgba(232,160,32,.3); }
+        .post-content a { color: var(--accent); border-bottom: 1px solid rgba(38,205,255,.3); }
         .post-content a:hover { border-bottom-color: var(--accent); }
 
         .post-gallery {
@@ -310,7 +310,7 @@
             border-radius: 6px; font-size: .85rem; font-weight: 600;
             color: var(--accent); transition: border-color .2s, background .2s;
         }
-        .post-links ul li a:hover { border-color: var(--accent); background: rgba(232,160,32,.08); color: var(--accent); }
+        .post-links ul li a:hover { border-color: var(--accent); background: rgba(38,205,255,.08); color: var(--accent); }
 
         /* ---------- PAGINATION ---------- */
         .pagination { display: flex; gap: .5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap; }
@@ -321,7 +321,7 @@
             transition: color .2s, border-color .2s;
         }
         .pagination a:hover { color: var(--accent); border-color: var(--accent); }
-        .pagination .current { color: var(--accent); border-color: var(--accent2); background: rgba(232,160,32,.08); }
+        .pagination .current { color: var(--accent); border-color: var(--accent2); background: rgba(38,205,255,.08); }
 
         /* ---------- ABOUT PAGE ---------- */
         .about-desc {
