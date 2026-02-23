@@ -1,0 +1,84 @@
+{% extends "modteam/base.html" %}
+
+{% block title %}О нас — {{ about.team_name|default:"YinYang Team" }}{% endblock %}
+
+{% block content %}
+
+<div class="section-header">
+    <h2>О команде</h2>
+    <div class="line"></div>
+</div>
+
+{% if about %}
+<div style="display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;margin-bottom:2.5rem">
+    {% if about.logo %}
+    <img src="{{ about.logo.url }}" alt="{{ about.team_name }}"
+         style="width:120px;height:120px;object-fit:contain;border:2px solid var(--border);border-radius:12px;background:var(--surface)">
+    {% endif %}
+    <div>
+        <h1 style="font-family:'Rajdhani',sans-serif;font-size:2.2rem;font-weight:700;color:#fff;letter-spacing:2px;text-transform:uppercase">
+            {{ about.team_name }}
+        </h1>
+        {% if about.tagline %}
+            <p style="color:var(--accent);margin-top:.3rem;font-size:1rem">{{ about.tagline }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="about-desc">
+    {{ about.description|linebreaks }}
+</div>
+
+{% if about.vk_group or about.discord_server or about.github_org %}
+<div class="socials-row">
+    {% if about.vk_group %}
+    <a href="{{ about.vk_group }}" target="_blank" rel="noopener" class="btn">VK</a>
+    {% endif %}
+    {% if about.discord_server %}
+    <a href="{{ about.discord_server }}" target="_blank" rel="noopener" class="btn btn-outline">Discord</a>
+    {% endif %}
+    {% if about.github_org %}
+    <a href="{{ about.github_org }}" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+    {% endif %}
+</div>
+{% endif %}
+
+{% else %}
+<div class="empty-state">
+    <div class="icon">ℹ️</div>
+    <p>Информация о команде скоро появится.</p>
+</div>
+{% endif %}
+
+{% if members %}
+<div class="section-header" style="margin-top:3rem">
+    <h2>Участники</h2>
+    <div class="line"></div>
+</div>
+
+<div class="team-grid">
+    {% for member in members %}
+    <div class="team-card">
+        {% if member.avatar %}
+            <img src="{{ member.avatar.url }}" alt="{{ member.name }}" class="team-card__avatar">
+        {% else %}
+            <div class="team-card__avatar-placeholder">👤</div>
+        {% endif %}
+        <div class="team-card__name">{{ member.name }}</div>
+        <div class="team-card__role">{{ member.get_display_role }}</div>
+        {% if member.bio %}
+            <div class="team-card__bio">{{ member.bio }}</div>
+        {% endif %}
+        {% if member.vk_url or member.discord or member.github_url %}
+        <div class="team-card__socials">
+            {% if member.vk_url %}<a href="{{ member.vk_url }}" target="_blank">VK</a>{% endif %}
+            {% if member.discord %}<a title="{{ member.discord }}">Discord</a>{% endif %}
+            {% if member.github_url %}<a href="{{ member.github_url }}" target="_blank">GitHub</a>{% endif %}
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

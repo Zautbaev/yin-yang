@@ -1,0 +1,78 @@
+{% extends "modteam/base.html" %}
+{% load static %}
+
+{% block title %}{{ about.team_name|default:"YibYang Team" }} — Главная{% endblock %}
+
+{% block hero %}
+<section class="hero">
+    <div class="hero-content">
+        {% if about.logo %}
+            <img src="{{ about.logo.url }}" alt="Логотип" class="hero-logo">
+        {% endif %}
+        <h1>{% if about %}{{ about.team_name }}{% else %}<span>YinYang</span>Team{% endif %}</h1>
+        {% if about.tagline %}
+            <p>{{ about.tagline }}</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+{% if about and about.founded_year or about.mods_count or about.members_count %}
+<div class="stats-bar">
+    {% if about.founded_year %}
+    <div class="stat-item">
+        <div class="num">{{ about.founded_year }}</div>
+        <div class="lbl">Год основания</div>
+    </div>
+    {% endif %}
+    {% if about.mods_count %}
+    <div class="stat-item">
+        <div class="num">{{ about.mods_count }}</div>
+        <div class="lbl">Модов</div>
+    </div>
+    {% endif %}
+    {% if about.members_count %}
+    <div class="stat-item">
+        <div class="num">{{ about.members_count }}</div>
+        <div class="lbl">Участников</div>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+
+<div class="section-header">
+    <h2>Последние новости</h2>
+    <div class="line"></div>
+    <a href="{% url 'modteam:news_list' %}">Все новости →</a>
+</div>
+
+{% if latest_news %}
+<div class="news-grid">
+    {% for post in latest_news %}
+    <article class="news-card">
+        {% if post.cover_image %}
+            <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="news-card__cover">
+        {% else %}
+            <div class="news-card__cover-placeholder">📰</div>
+        {% endif %}
+        <div class="news-card__body">
+            <div class="news-card__date">{{ post.created_at|date:"d E Y" }}</div>
+            <div class="news-card__title">{{ post.title }}</div>
+            <div class="news-card__excerpt">{{ post.content|striptags|truncatewords:25 }}</div>
+            <div class="news-card__footer">
+                <a href="{{ post.get_absolute_url }}" class="btn">Читать</a>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <div class="icon">📰</div>
+    <p>Новостей пока нет. Загляните позже!</p>
+</div>
+{% endif %}
+
+{% endblock %}
